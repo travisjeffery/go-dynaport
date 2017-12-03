@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"net"
+	"strconv"
 	"sync"
 	"time"
 )
@@ -32,6 +33,28 @@ func MustGet(n int) []int {
 		panic(err)
 	}
 	return ports
+}
+
+// MustGetStr returns n ports as strings that are free to use, panicing if it can't succeed.
+func MustGetStr(n int) []string {
+	ports, err := GetStr(n)
+	if err != nil {
+		panic(err)
+	}
+	return ports
+}
+
+// GetStr return n ports (as strings) that are free to use.
+func GetStr(n int) ([]string, error) {
+	ports, err := Get(n)
+	if err != nil {
+		return nil, err
+	}
+	var portsStr []string
+	for _, port := range ports {
+		portsStr = append(portsStr, strconv.Itoa(port))
+	}
+	return portsStr, nil
 }
 
 // Get returns n ports that are free to use.
