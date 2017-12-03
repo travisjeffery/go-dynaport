@@ -5,22 +5,26 @@ A Go library for getting free ports, dynamically.
 ## Example
 
 ``` go
-ports := dynaport.MustGet(3)
-
-jockoPort := ports[0]
-serfPort := ports[1]
-raftPort := ports[2]
+ports := dynaport.Get(3)
+// ports is something like []int{10000, 10001, 10002}
 ```
 
 Or
 
 ``` go
-ports, err := dynaport.Get(3)
+ports, err := dynaport.GetWithErr(3)
 if err != nil {
   // handle err
 }
 
 // use ports...
+```
+
+Or 
+
+```
+ports := dynaport.GetS(3)
+// ports is something like []string{"10000", "10001", "10002"}
 ```
 
 ## License

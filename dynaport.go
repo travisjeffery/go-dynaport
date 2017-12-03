@@ -26,18 +26,18 @@ var (
 	lockLn    net.Listener
 )
 
-// MustGet returns n ports that are free to use, panicing if it can't succeed.
-func MustGet(n int) []int {
-	ports, err := Get(n)
+// Get returns n ports that are free to use, panicing if it can't succeed.
+func Get(n int) []int {
+	ports, err := GetWithErr(n)
 	if err != nil {
 		panic(err)
 	}
 	return ports
 }
 
-// MustGetS returns n ports as strings that are free to use, panicing if it can't succeed.
-func MustGetS(n int) []string {
-	ports, err := GetS(n)
+// GetS returns n ports as strings that are free to use, panicing if it can't succeed.
+func GetS(n int) []string {
+	ports, err := GetSWithErr(n)
 	if err != nil {
 		panic(err)
 	}
@@ -45,8 +45,8 @@ func MustGetS(n int) []string {
 }
 
 // GetS return n ports (as strings) that are free to use.
-func GetS(n int) ([]string, error) {
-	ports, err := Get(n)
+func GetSWithErr(n int) ([]string, error) {
+	ports, err := GetWithErr(n)
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func GetS(n int) ([]string, error) {
 }
 
 // Get returns n ports that are free to use.
-func Get(n int) (ports []int, err error) {
+func GetWithErr(n int) (ports []int, err error) {
 	mu.Lock()
 	defer mu.Unlock()
 
