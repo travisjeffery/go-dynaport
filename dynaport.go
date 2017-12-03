@@ -35,17 +35,17 @@ func MustGet(n int) []int {
 	return ports
 }
 
-// MustGetStr returns n ports as strings that are free to use, panicing if it can't succeed.
-func MustGetStr(n int) []string {
-	ports, err := GetStr(n)
+// MustGetS returns n ports as strings that are free to use, panicing if it can't succeed.
+func MustGetS(n int) []string {
+	ports, err := GetS(n)
 	if err != nil {
 		panic(err)
 	}
 	return ports
 }
 
-// GetStr return n ports (as strings) that are free to use.
-func GetStr(n int) ([]string, error) {
+// GetS return n ports (as strings) that are free to use.
+func GetS(n int) ([]string, error) {
 	ports, err := Get(n)
 	if err != nil {
 		return nil, err
