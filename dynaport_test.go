@@ -6,7 +6,7 @@ import (
 )
 
 func TestGet(t *testing.T) {
-	ports, err := Get(3)
+	ports, err := GetWithErr(3)
 	if err != nil {
 		t.Fatalf("err: %v", err)
 	}

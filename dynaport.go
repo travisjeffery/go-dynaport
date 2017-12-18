@@ -1,3 +1,5 @@
+// Package dynaport exposes functionality to get free (unused) ports on your
+// system.
 package dynaport
 
 import (
@@ -63,7 +65,7 @@ func GetWithErr(n int) (ports []int, err error) {
 	defer mu.Unlock()
 
 	if n > blockSize-1 {
-		return nil, fmt.Errorf("dynaportt: block size is too small for ports requested")
+		return nil, fmt.Errorf("dynaport: block size is too small for ports requested")
 	}
 
 	once.Do(initialize)
